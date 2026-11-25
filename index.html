@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de problemas OMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="band"><div class="wrap hero">
+ <div>
+  <h1>Pedido com problema? Siga a linha.</h1>
+  <p class="lead" style="margin-top:14px">Guia de bolso para o analista de operações júnior. O pedido passa por 7 sistemas, como estações de metrô. O problema está sempre na <b>última estação em que o pedido ficou certo</b> ou na seguinte.</p>
+  <p class="lead">Clique numa estação do mapa para ver o que ela faz e o que conferir nela.</p>
+  <p style="margin-top:14px"><a href="#problemas" class="chip" style="display:inline-block;text-decoration:none;background:var(--hot);color:#fff;border-color:var(--hot)">Ver os 25 problemas mais comuns →</a></p>
+ </div>
+ <div class="map" aria-label="Mapa do fluxo do pedido">
+  <div class="row"><button class="st in" data-k="mkt"><b>Marketplaces</b><small>ML, Privalia, Dafiti</small></button><button class="st in" data-k="any"><b>Anymarket</b><small>porta de entrada</small></button><button class="st in" data-k="site"><b>Sites</b><small>Aramis e Urban</small></button></div>
+  <div class="row"><div class="side">→ entra</div><div class="arr">↓</div><div class="side">← entra</div></div>
+  <div class="row"><div></div><button class="st wk" data-k="wec"><b>Wake Ecommerce</b><small>ponte até o OMS</small></button><div></div></div>
+  <div class="arr">↓</div>
+  <div class="row"><div></div><button class="st wk" data-k="oms"><b>Wake OMS</b><small>o cérebro do pedido</small></button><button class="st om" data-k="omni"><b>Loja atende</b><small>omnichannel</small></button></div>
+  <div class="arr">↓</div>
+  <div class="row"><div></div><button class="st wk" data-k="sin"><b>SinB2C</b><small>painel de status</small></button><div></div></div>
+  <div class="arr">↓</div>
+  <div class="row"><button class="st xc" data-k="reab"><b>Reabastecimento</b><small>corte sem estoque</small></button><button class="st ex" data-k="wms"><b>Senior WMS</b><small>separação no CD</small></button><div></div></div>
+  <div class="arr">↓</div>
+  <div class="row"><div></div><button class="st ex" data-k="linx"><b>Linx ERP</b><small>nota fiscal</small></button><div class="side">→ avisa o SinB2C</div></div>
+  <div class="arr">↓</div>
+  <div class="row"><button class="st in" data-k="track"><b>Rastreio volta</b><small>SinB2C, Linx, site</small></button><button class="st ex" data-k="inte"><b>Intelipost</b><small>etiqueta e envio</small></button><button class="st ex" data-k="transp"><b>Transportadora</b><small>coleta e entrega</small></button></div>
+  <div class="info" id="info" aria-live="polite"></div>
+ </div>
+</div></header>
+
+<nav class="scroll" aria-label="Seções">
+ <a href="#metodo">Método em 7 passos</a><a href="#problemas">Mapa de problemas</a><a href="#sistemas">Os sistemas</a><a href="#glossario">Glossário</a><a href="#fontes">Fontes</a>
+</nav>
+
+<section class="band" id="metodo"><div class="wrap">
+ <h2>O método: sempre na mesma ordem</h2>
+ <p class="lead">Faça isso para qualquer pedido com problema. Você segue o pedido pelo caminho dele até achar onde ele parou.</p>
+ <div class="steps" id="steps"></div>
+ <div class="note"><b>Regra de ouro:</b> antes de mexer em qualquer coisa, anote o número do pedido, o canal, o status em cada sistema e um print do erro. Isso resolve metade dos chamados e é o que todo suporte (Anymarket, Intelipost) pede primeiro.</div>
+</div></section>
+
+<section class="band" id="problemas" style="background:var(--card)"><div class="wrap">
+ <h2>Mapa de problemas</h2>
+ <p class="lead">Cada cartão mostra: o que você vê, onde olhar, por que acontece, o que fazer e quem chamar. Clique para abrir.</p>
+ <div class="tools">
+  <input id="q" type="search" placeholder="Busque: CEP, NF-e, cancelado, estoque..." aria-label="Buscar problema">
+ </div>
+ <div class="tools" id="chips" role="group" aria-label="Filtrar por tipo"></div>
+ <div class="grid" id="grid"></div>
+ <p class="empty" id="empty">Nenhum problema com essa busca. Tente outra palavra.</p>
+</div></section>
+
+<section class="band" id="sistemas"><div class="wrap">
+ <h2>Os sistemas, na ordem para aprender</h2>
+ <p class="lead">Se tiver pouco tempo, estude de cima para baixo. O Wake OMS e o SinB2C são onde você vai passar a maior parte do dia.</p>
+ <div class="sys" id="sys"></div>
+</div></section>
+
+<section class="band" id="glossario" style="background:var(--card)"><div class="wrap">
+ <h2>Glossário rápido</h2>
+ <div class="gl" id="gl"></div>
+</div></section>
+
+<footer class="band" id="fontes"><div class="wrap">
+ <h2 style="font-size:24px;color:var(--ink)">Fontes e o que ainda falta validar</h2>
+ <p>Wake OMS (Síntese) e SinB2C são sistemas internos e não têm documentação pública de erros. Os cartões sobre eles vêm do fluxo da empresa e de padrões comuns de OMS; confirme os nomes exatos dos status com o seu time.</p>
+ <ul>
+  <li><a href="https://suporte.anymarket.com.br/">Portal de suporte Anymarket</a></li>
+  <li><a href="https://developers.anymarket.com.br/">Documentação Anymarket para desenvolvedores</a></li>
+  <li><a href="https://intercom.help/intelipost/pt-BR/">Central de ajuda Intelipost</a> e <a href="https://intercom.help/intelipost/pt-BR/articles/5599490-intelipost-como-abrir-e-acompanhar-chamados-atraves-da-central-de-ajuda">como abrir chamado</a></li>
+  <li><a href="https://documentacao.senior.com.br/gestaodearmazenagemwms/8.12/manuais-wms/manuais-operacionais/expedicao/cancelamento-pedido.html">Senior WMS: cancelamento com onda formada</a> e <a href="https://documentacao.senior.com.br/gestaodearmazenagemwms/8.12/manuais-wms/manuais-operacionais/integracao/refaturamento-pedido.html">cancelamento e refaturamento</a></li>
+  <li><a href="https://ajuda.omie.com.br/pt-BR/collections/3442913-rejeicoes-de-nf-e">Lista de rejeições de NF-e</a> e <a href="https://nfe.io/docs/documentacao/reforma-tributaria/conceitos-funcionais/nota-fiscal-de-produto/guia-solucao-problemas-nfe-nfce-rtc/index.md">guia de rejeições comuns</a></li>
+  <li><a href="https://help.vtex.com/en/known-issues/inconsistency-in-order-statuses-between-oms-and-pick-and-pack">Exemplo de status divergente entre OMS e separação</a></li>
+ </ul>
+ </div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
